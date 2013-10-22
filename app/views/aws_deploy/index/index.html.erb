@@ -1,0 +1,22 @@
+<h1>Deployer MG</h1> 
+<hr>
+
+
+<%if @exist_config %>
+
+
+<% if flash[:message] %>
+  <hr>
+  <b>Message:</b> <br>
+  <%= flash[:message]%>
+  <hr>
+<% end %>
+<%= link_to 'Send this version to Production', aws_deploy_send_to_production_path %>
+
+
+
+
+
+<% else %>
+  <%= render :partial => "config_file_not_found" %>
+<% end %>
