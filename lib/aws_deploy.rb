@@ -5,4 +5,6 @@ end
 
 # 
 require "aws_deploy/engine"
+require "aws_deploy/version"
+
 
