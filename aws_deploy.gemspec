@@ -1,4 +1,6 @@
 $:.push File.expand_path("../lib", __FILE__)
+require File.expand_path("../lib/aws_deploy/version", __FILE__)
+
 
 # Maintain your gem's version:
 require "aws_deploy/version"
