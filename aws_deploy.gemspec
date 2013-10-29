@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
   s.version     = AwsDeploy::VERSION
   s.authors     = ["Marcio Mangar"]
   s.email       = ["marcio.mangar@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of AwsDeploy."
-  s.description = "TODO: Description of AwsDeploy."
+  s.homepage    = "http://github.com/mangar/aws_deploy"
+  s.summary     = "Summary of AwsDeploy."
+  s.description = "Description of AwsDeploy."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]

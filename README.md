@@ -19,13 +19,13 @@ Push your app from _staging_ to _production_ server using S3 as a bridge
 Install the gem.... 
 
 ```
-gem install aws-deploy
+gem install aws_deploy
 ```
 
 ... or add that on the bundle file (Gemfile)
 
 ```
-gem 'aws_deploy'
+gem 'aws_deploy', :git => 'https://github.com/mangar/aws_deploy.git'
 ```
 
 
