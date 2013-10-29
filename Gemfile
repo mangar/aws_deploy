@@ -5,7 +5,11 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'sqlite3'
+gem "rails", "~> 4.0.0"
+gem "aws-sdk", "~> 1.21.0"
+
+
+# gem 'sqlite3'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
