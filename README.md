@@ -1,6 +1,17 @@
+
+
 # AwsDeploy
 
 Push your app from _staging_ to _production_ server using S3 as a bridge
+
+
+## Features
+
+- editing and live preview
+- Multiple markups: Markdown, RDoc, Textile
+- Syntax highlighting
+- Github-like styles
+- Import gist documents
 
 
 ## Install
@@ -37,6 +48,14 @@ rake aws:setup
 Generated content:
 
 - config/aws_deploy.yml
+- script/deploy.sh
+- script/_deploy.rb
+- script/_deploy_s3.rb
+
+
+//- script/production/deploy.sh
+//- script/production/_deploy_s3.rb
+//- script/production/_deploy_
 
 
 ## Configuration
