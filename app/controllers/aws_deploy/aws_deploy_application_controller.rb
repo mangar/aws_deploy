@@ -37,5 +37,20 @@ class AwsDeploy::AwsDeployApplicationController < ApplicationController
     "#{$deployer_mg['file_pattern']}-#{env}.md5"
   end
 
+  # 
+  # 
+  def aws_secret? aws_secret=""
+    _aws_secret_access_key == aws_secret
+  end
+
+  # 
+  # 
+  # 
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == _aws_access_key_id && password == _aws_access_key_id
+    end
+  end
+
 
 end

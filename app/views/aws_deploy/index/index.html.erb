@@ -1,17 +1,37 @@
-<h1>Deployer MG</h1> 
+<h1>AWS Deploy</h1> 
 <hr>
 
 <%if @exist_config %>
 
+  <% if flash[:message] %>
 
-<% if flash[:message] %>
-  <b>Message:</b> <br>
-  <h2><%= flash[:message]%></h2>
-  <hr>
-<% else %>
-  <%= link_to 'Send this version to Production', aws_deploy_send_to_production_path %>
-<% end %>
+    <b>Message:</b> <br>
+    <h2><%= flash[:message]%></h2>
+    <hr>
 
+  <% else %>
+
+    <% if flash[:error] %>
+
+    <b>Message:</b> <br>
+    <h2>
+      <b>ERROR!</b> <br>
+      <%= flash[:error]%>
+    </h2>
+    <hr>
+
+    <% end %>
+
+
+
+    <%= form_tag({:action => :send_to_production}) do %>
+      <b>AWS Secret Access Key:</b>  <br>
+      <%= text_field(:aws_secret, "", size: "50" ) %><br>
+    &nbsp; <br>
+      <button class="sexybutton"><span><span><span class="upload">Push to Production</span></span></span></button>
+    <% end %>
+
+  <% end %>
 
 <% else %>
   <%= render :partial => "config_file_not_found" %>
