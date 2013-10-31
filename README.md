@@ -64,16 +64,24 @@ Generated content:
 
 The value of the fields aws_access_key_id and aws_secret_access_key can be the real value or the reference to the ENV variable.
 
+The file_pattern will be added the environment and .zip or .md5.
+Ex.:
+file_pattern-test.zip and file_pattern-test.md5  for testing environment
+file_pattern-prod.zip and file_pattern-prod.md5  for production environment
+
+
 ```
 development:
   aws_bucket: "YOUR_BUCKET_ON_S3"
   aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
+  file_pattern: FILE_NAME
 
 staging: 
   aws_bucket: "YOUR_BUCKET_ON_S3"
   aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
+  file_pattern: FILE_NAME
 
 ```
 

@@ -12,28 +12,28 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   # 
   # 
   def send_to_production
-
+    
     flash_message = "File sent to S3"
 
-    AWS.config(:access_key_id => "#{$deployer_mg['aws_access_key_id']}", :secret_access_key => "#{$deployer_mg['aws_secret_access_key']}")
+    AWS.config(:access_key_id => "#{_aws_access_key_id}", :secret_access_key => "#{_aws_secret_access_key}")
     s3 = AWS::S3.new
-    bucket = s3.buckets["#{$deployer_mg['aws_bucket']}"]
+    bucket = s3.buckets["#{_aws_bucket}"]
 
-    s3_filename = "samsung-g11-$1.zip"
-    s3_filename_md5 = "samsung-g11-$1.md5"
+    # s3_filename = "samsung-g11-$1.zip"
+    # s3_filename_md5 = "samsung-g11-$1.md5"
 
-    if bucket.objects[s3_filename_md5.gsub("$1", "test")].exists?
+    if bucket.objects[_md5_file("test")].exists?
 
         # remove files in production...
-        bucket.objects[s3_filename_md5.gsub("$1", "prod")].delete if bucket.objects[s3_filename_md5.gsub("$1", "prod")].exists?
-        bucket.objects[s3_filename.gsub("$1", "prod")].delete if bucket.objects[s3_filename.gsub("$1", "prod")].exists?
+        bucket.objects[_md5_file("prod")].delete if bucket.objects[_md5_file("prod")].exists?
+        bucket.objects[_zip_file("prod")].delete if bucket.objects[_zip_file("prod")].exists?
 
         # copying files from test to production
-        bucket.objects[s3_filename_md5.gsub("$1", "test")].copy_to(s3_filename_md5.gsub("$1", "prod"))
-        bucket.objects[s3_filename.gsub("$1", "test")].copy_to(s3_filename.gsub("$1", "prod"))
+        bucket.objects[_md5_file("test")].copy_to(_md5_file("prod"))
+        bucket.objects[_zip_file("test")].copy_to(_zip_file("prod"))
 
     else
-      flash_message = "Test file not found. #{s3_filename_md5.gsub("$1", "test")}"
+      flash_message = "Test file not found. #{_md5_file("test")}"
     end
     
     
