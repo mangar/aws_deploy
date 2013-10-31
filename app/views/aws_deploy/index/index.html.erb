@@ -2,6 +2,14 @@
 <hr>
 
 
+<%= $deployer_mg['aws_access_key_id'].start_with?("ENV") ? eval($deployer_mg['aws_access_key_id']) : $deployer_mg['aws_access_key_id']%>
+
+<br>
+
+
+<hr>
+
+
 <%if @exist_config %>
 
 

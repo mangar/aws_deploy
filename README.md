@@ -62,21 +62,18 @@ Generated content:
 
 ### aws_deploy.yml ###
 
+The value of the fields aws_access_key_id and aws_secret_access_key can be the real value or the reference to the ENV variable.
+
 ```
 development:
   aws_bucket: "YOUR_BUCKET_ON_S3"
-  aws_access_key_id: "YOUR_ACCESS_KEY"
-  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY"
+  aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
+  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
 
 staging: 
   aws_bucket: "YOUR_BUCKET_ON_S3"
-  aws_access_key_id: "YOUR_ACCESS_KEY"
-  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY"
-
-producion:
-  aws_bucket: "YOUR_BUCKET_ON_S3"
-  aws_access_key_id: "YOUR_ACCESS_KEY"
-  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY"
+  aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
+  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
 
 ```
 
