@@ -12,15 +12,12 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   # 
   # 
   def send_to_production
-    
+
     flash_message = "File sent to S3"
 
     AWS.config(:access_key_id => "#{_aws_access_key_id}", :secret_access_key => "#{_aws_secret_access_key}")
     s3 = AWS::S3.new
     bucket = s3.buckets["#{_aws_bucket}"]
-
-    # s3_filename = "samsung-g11-$1.zip"
-    # s3_filename_md5 = "samsung-g11-$1.md5"
 
     if bucket.objects[_md5_file("test")].exists?
 
