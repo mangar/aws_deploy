@@ -5,15 +5,6 @@
 Push your app from _staging_ to _production_ server using S3 as a bridge
 
 
-## Features
-
-- editing and live preview
-- Multiple markups: Markdown, RDoc, Textile
-- Syntax highlighting
-- Github-like styles
-- Import gist documents
-
-
 ## Install
 
 Install the gem.... 
@@ -35,6 +26,9 @@ __First access__
 Run your site (rails server) and open the URL on your browser: [http://localhost:3000/aws_deploy](http://localhost:3000/aws_deploy)
 
 
+The URL is protected by basic authentication. 
+
+Use the AWS Key ID registered in aws_deploy.yml file for that.
 
 
 ## Initial Setup
