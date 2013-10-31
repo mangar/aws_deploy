@@ -1,24 +1,11 @@
 <p>
   <h2>Ups, looks that you don't have the configuration file in your path. <br>
-No worries, that's simple, follow the steps:
+No worries, run:
 </h2>
+
+<pre>
+rake aws:setup
+</pre>
+
 </p>
-
-<ul>
-  <li>create a file named: <b>aws_deploy.yml</b> on your <b>config</b> directory</li>
-  <li>set the content of this file to something like this:
-    <pre>
-development:
-  aws_bucket: "directory/deploy"
-  aws_access_key_id: "YOUR_ACCESS_KEY_ID__HERE or ENV['YOUR_KEY_EXPORTED']"
-  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY__HERE or ENV['YOUR_KEY_EXPORTED']"
-
-staging: 
-  aws_bucket: "directory/deploy"
-  aws_access_key_id: "YOUR_ACCESS_KEY_ID__HERE or ENV['YOUR_KEY_EXPORTED']"
-  aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY__HERE or ENV['YOUR_KEY_EXPORTED']"
-     </pre>
-
-  </li> 
-  <li>Reload this page</li>
 </ul>

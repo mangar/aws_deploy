@@ -9,7 +9,7 @@ class Deploy::Deploy
     # generate packaging
     Deploy::Packing.new.run_all
     
-    
+    "aaa"
     
   end
 

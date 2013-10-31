@@ -6,19 +6,37 @@
 
 namespace :aws do
 
-  desc "Package and deploy the project on staging environment"
 
-  task :staging => :environment do
+  desc "Create the initial aws_deploy.yml file"
 
+  task :setup => :environment do
     system("clear screen")
-
     puts "-" * 100
-    puts "Starting deployment on Staging environment"
 
+    puts "Generating aws_deploy.yml file"
 
-    puts "#{Deploy::Deploy.new.deploy_on_stage}"
+    puts "#{Tasks::SetupYml.new.run}"
+
     
+    puts "-" * 100
   end
+
+
+
+
+  # desc "Package and deploy the project on staging environment"
+
+  # task :staging => :environment do
+
+  #   system("clear screen")
+
+  #   puts "-" * 100
+  #   puts "Starting deployment on Staging environment"
+
+
+  #   puts "#{Deploy::Deploy.new.deploy_on_stage}"
+    
+  # end
 
 
 

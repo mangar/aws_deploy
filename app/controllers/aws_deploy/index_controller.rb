@@ -33,7 +33,6 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
       flash_message = "Test file not found. #{_md5_file("test")}"
     end
     
-    
     flash[:message] = "#{flash_message}"
     redirect_to aws_deploy_root_path
   end
