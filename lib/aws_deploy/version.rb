@@ -1,3 +1,3 @@
 module AwsDeploy
-  VERSION = "0.0.45"
+  VERSION = "0.1.0"
 end
