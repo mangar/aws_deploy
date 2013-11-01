@@ -1,5 +1,5 @@
 class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
-  before_filter :authenticate
+  # before_filter :authenticate
   layout "aws_deploy"
   require "aws-sdk"
 
