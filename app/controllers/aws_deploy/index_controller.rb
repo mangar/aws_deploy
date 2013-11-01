@@ -26,12 +26,12 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
       if bucket.objects[_md5_file("test")].exists?
 
           # remove files in production...
-          bucket.objects[_md5_file("prod")].delete if bucket.objects[_md5_file("prod")].exists?
-          bucket.objects[_zip_file("prod")].delete if bucket.objects[_zip_file("prod")].exists?
+          bucket.objects[_md5_file("prod")].delete if bucket.objects[_md5_file("production")].exists?
+          bucket.objects[_zip_file("prod")].delete if bucket.objects[_zip_file("production")].exists?
 
           # copying files from test to production
-          bucket.objects[_md5_file("test")].copy_to(_md5_file("prod"))
-          bucket.objects[_zip_file("test")].copy_to(_zip_file("prod"))
+          bucket.objects[_md5_file("test")].copy_to(_md5_file("production"))
+          bucket.objects[_zip_file("test")].copy_to(_zip_file("production"))
 
       else
         flash_message = "Test file not found. #{_md5_file("test")}"
