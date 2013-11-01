@@ -1,6 +1,6 @@
 class AwsDeploy::AwsDeployApplicationController < ApplicationController
 
-  private
+  # private
 
   # 
   # 
