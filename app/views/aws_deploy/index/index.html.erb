@@ -28,8 +28,21 @@
       <b>AWS Secret Access Key:</b>  <br>
       <%= text_field(:aws_secret, "", size: "50" ) %><br>
     &nbsp; <br>
-      <button class="sexybutton"><span><span><span class="upload">Push to Production</span></span></span></button>
+
+      <%= hidden_field(:env, "")%>
+
+      <button class="sexybutton sexysimple"><span class="ok">Push do STAGE</span></button>
+      &nbsp;&nbsp;&nbsp;
+      <button class="sexybutton sexysimple sexyblue"><span class="ok">Push do ADMIN</span></button>
+      &nbsp;&nbsp;&nbsp;
+      <button class="sexybutton sexysimple sexyred"><span class="ok">Push do PRODUCTION</span></button>
+            
     <% end %>
+
+
+
+
+
 
   <% end %>
 
