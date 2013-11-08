@@ -22,7 +22,7 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
 
     end
 
-    redirect_to aws_deploy_send_to_production_awsdeploy_path
+    redirect_to aws_deploy_root_awsdeploy_path
   end
 
 
