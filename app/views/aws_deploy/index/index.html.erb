@@ -12,7 +12,7 @@
   <% else %>
 
 
-    <%= form_tag(aws_deploy_send_to_production_path, :onsubmit => "javascript:pushTo(event)") do %>
+    <%= form_tag(aws_deploy_send_to_production_awsdeploy_path, :onsubmit => "javascript:pushTo(event)") do %>
       <b>AWS Secret Access Key:</b>  <br>
       <%= text_field(:aws_secret, "", size: "50" ) %><br>
       &nbsp; <br>
