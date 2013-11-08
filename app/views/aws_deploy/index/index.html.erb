@@ -11,25 +11,51 @@
 
   <% else %>
 
-    <% if flash[:error] %>
 
-    <b>Message:</b> <br>
-    <h2>
-      <b>ERROR!</b> <br>
-      <%= flash[:error]%>
-    </h2>
-    <hr>
-
-    <% end %>
-
-
-
-    <%= form_tag({:action => :send_to_production}) do %>
+    <%= form_tag(aws_deploy_send_to_production_path, :onsubmit => "javascript:pushTo(event)") do %>
       <b>AWS Secret Access Key:</b>  <br>
       <%= text_field(:aws_secret, "", size: "50" ) %><br>
-    &nbsp; <br>
-      <button class="sexybutton"><span><span><span class="upload">Push to Production</span></span></span></button>
+      &nbsp; <br>
+
+
+      <b>Environment:</b>  <br>
+      <label ><%= radio_button_tag 'env', 'stage', true %> &nbsp; Stage </label> <br>
+      <label ><%= radio_button_tag 'env', 'admin' %> &nbsp; Admin </label> <br>
+      <label ><%= radio_button_tag 'env', 'production' %> &nbsp; Production </label> <br>
+
+      &nbsp; <br>      
+
+      <button class="sexybutton sexysimple"><span class="ok">Deploy</span></button>
+            
     <% end %>
+
+<script type="text/javascript">
+function pushTo(event) {
+  
+  var _aws_key_value = document.getElementById('aws_secret_').value;
+  if (_aws_key_value == "") {
+    alert('Fill the AWS Secret.');
+    event.preventDefault();
+    return;
+  }
+
+  var radios = document.getElementsByName('env');
+  var value;
+  for (var i = 0; i < radios.length; i++) {
+      if (radios[i].type === 'radio' && radios[i].checked) {
+          value = radios[i].value;       
+      }
+  }
+
+  if (!confirm('Do you really want to push to ' + value + '?')) {
+    event.preventDefault();
+  }
+
+}
+</script>
+
+
+
 
   <% end %>
 
