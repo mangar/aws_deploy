@@ -1,4 +1,4 @@
-class AwsDeploy::AwsDeployApplicationController < ApplicationController
+class AwsDeploy::AwsDeployApplicationController < ActionController::Base
 
   # private
 
