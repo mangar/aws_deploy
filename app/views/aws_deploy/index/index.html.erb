@@ -11,17 +11,6 @@
 
   <% else %>
 
-    <% if flash[:error] %>
-
-    <b>Message:</b> <br>
-    <h2>
-      <b>ERROR!</b> <br>
-      <%= flash[:error]%>
-    </h2>
-    <hr>
-
-    <% end %>
-
 
     <%= form_tag(aws_deploy_send_to_production_path, :onsubmit => "javascript:pushTo(event)") do %>
       <b>AWS Secret Access Key:</b>  <br>
@@ -36,7 +25,7 @@
 
       &nbsp; <br>      
 
-      <button class="sexybutton sexysimple"><span class="ok">Push do STAGE</span></button>
+      <button class="sexybutton sexysimple"><span class="ok">Deploy</span></button>
             
     <% end %>
 

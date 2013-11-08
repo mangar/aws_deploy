@@ -1,5 +1,4 @@
 class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
-  # before_filter :authenticate
   layout "aws_deploy"
   require "aws-sdk"
 
@@ -13,11 +12,29 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   # 
   def send_to_production
 
-    # raise params[:aws_secret][0]
-
     if (aws_secret?(params[:aws_secret][0]))
 
-      flash_message = "File sent to S3"
+      message = _move_to params[:env]
+      flash[:message] = "#{message}"
+
+    else 
+      flash[:message] = "AWS Secret is Invalid! ... #{params[:env]}"
+
+    end
+
+    redirect_to aws_deploy_root_path
+  end
+
+
+  private
+
+
+  # 
+  # 
+  def _move_to environment
+    
+    message = "File sent to S3"
+    if %w(admin stage production).include?(environment)
 
       AWS.config(:access_key_id => "#{_aws_access_key_id}", :secret_access_key => "#{_aws_secret_access_key}")
       s3 = AWS::S3.new
@@ -26,26 +43,25 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
       if bucket.objects[_md5_file("test")].exists?
 
           # remove files in production...
-          bucket.objects[_md5_file("prod")].delete if bucket.objects[_md5_file("production")].exists?
-          bucket.objects[_zip_file("prod")].delete if bucket.objects[_zip_file("production")].exists?
+          bucket.objects[_md5_file("#{environment}")].delete if bucket.objects[_md5_file("#{environment}")].exists?
+          bucket.objects[_zip_file("#{environment}")].delete if bucket.objects[_zip_file("#{environment}")].exists?
 
           # copying files from test to production
-          bucket.objects[_md5_file("test")].copy_to(_md5_file("production"))
-          bucket.objects[_zip_file("test")].copy_to(_zip_file("production"))
+          bucket.objects[_md5_file("test")].copy_to(_md5_file("#{environment}"))
+          bucket.objects[_zip_file("test")].copy_to(_zip_file("#{environment}"))
+
+          message += " (#{environment})"
 
       else
-        flash_message = "Test file not found. #{_md5_file("test")}"
+        message = "Test file not found. #{_md5_file("test")}"
       end
-      
-      flash[:message] = "#{flash_message}"
-
 
     else 
-      flash[:error] = "AWS Secret is Invalid!"
-
+      message = "Environment is not available!"
     end
 
-    redirect_to aws_deploy_root_path
+    message
   end
+
 
 end
