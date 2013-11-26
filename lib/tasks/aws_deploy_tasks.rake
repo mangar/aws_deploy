@@ -6,7 +6,6 @@
 
 namespace :aws do
 
-
   desc "Create the initial aws_deploy.yml file"
 
   task :setup => :environment do
