@@ -12,29 +12,29 @@ class AwsDeploy::AwsDeployApplicationController < ActionController::Base
   # 
   # 
   def _aws_access_key_id
-    $deployer_mg['aws_access_key_id'].start_with?("ENV") ? eval($deployer_mg['aws_access_key_id']) : $deployer_mg['aws_access_key_id']
+    $aws_deploy['aws_access_key_id'].start_with?("ENV") ? eval($aws_deploy['aws_access_key_id']) : $aws_deploy['aws_access_key_id']
   end
 
   # 
   # 
   def _aws_secret_access_key
-    $deployer_mg['aws_secret_access_key'].start_with?("ENV") ? eval($deployer_mg['aws_secret_access_key']) : $deployer_mg['aws_secret_access_key']
+    $aws_deploy['aws_secret_access_key'].start_with?("ENV") ? eval($aws_deploy['aws_secret_access_key']) : $aws_deploy['aws_secret_access_key']
   end
 
   # 
   # 
   def _aws_bucket
-    $deployer_mg['aws_bucket']
+    $aws_deploy['aws_bucket']
   end
 
   # 
   # 
   def _zip_file env=""
-    "#{$deployer_mg['file_pattern']}-#{env}.zip"
+    "#{$aws_deploy['file_pattern']}-#{env}.zip"
   end
 
   def _md5_file env=""
-    "#{$deployer_mg['file_pattern']}-#{env}.md5"
+    "#{$aws_deploy['file_pattern']}-#{env}.md5"
   end
 
   # 
