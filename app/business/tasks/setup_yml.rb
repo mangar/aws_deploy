@@ -6,6 +6,11 @@ class Tasks::SetupYml
 
     collect_inputs
 
+    # TODO(m)
+    # fix the params, not copying to the file...
+
+    # TODO(m)
+    # generate the script dir with deploy.sh and lib dir (aws_send.rb, git_version_tag.rb)
 
     # 
     # aws_deploy.yml
@@ -16,7 +21,7 @@ class Tasks::SetupYml
 "  aws_secret_access_key: \"YOUR_SECRET_ACCESS_KEY__HERE or ENV['YOUR_KEY_EXPORTED']\" \n" + 
 "  file_pattern: \"FILE_NAME\" \n" + 
 "\n" + 
-"staging: \n" + 
+"development_remote: \n" + 
 "  aws_bucket: \"directory/deploy\"\n" + 
 "  aws_access_key_id: \"YOUR_ACCESS_KEY_ID__HERE or ENV['YOUR_KEY_EXPORTED']\"\n" + 
 "  aws_secret_access_key: \"YOUR_SECRET_ACCESS_KEY__HERE or ENV['YOUR_KEY_EXPORTED']\"\n" + 
