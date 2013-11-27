@@ -47,8 +47,8 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
           bucket.objects[_zip_file("#{environment}")].delete if bucket.objects[_zip_file("#{environment}")].exists?
 
           # copying files from test to production
-          bucket.objects[_md5_file("development_remote")].copy_to(_md5_file("#{environment}"))
           bucket.objects[_zip_file("development_remote")].copy_to(_zip_file("#{environment}"))
+          bucket.objects[_md5_file("development_remote")].copy_to(_md5_file("#{environment}"))
 
           message += " (#{environment})"
 
