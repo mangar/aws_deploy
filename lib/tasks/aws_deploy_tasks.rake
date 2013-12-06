@@ -13,8 +13,7 @@ namespace :aws do
     puts "-" * 100
 
     puts "Generating aws_deploy.yml file"
-
-    puts "#{Tasks::SetupYml.new.run}"
+    puts "#{AwsDeploy::Tasks::SetupYml.new.run}"
 
     
     puts "-" * 100
