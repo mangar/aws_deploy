@@ -34,7 +34,7 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   def _move_to environment
     
     message = "File sent to S3"
-    if %w(admin stage production).include?(environment)
+    if %w(admin stage stage2 production).include?(environment)
 
       AWS.config(:access_key_id => "#{_aws_access_key_id}", :secret_access_key => "#{_aws_secret_access_key}")
       s3 = AWS::S3.new
