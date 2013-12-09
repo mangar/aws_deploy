@@ -3,6 +3,8 @@ class AwsDeploy::Tasks::SetupYml
   include AwsDeploy::Tasks::GenerateLocalDeployRb
   include AwsDeploy::Tasks::GenerateAwsSendRb
   include AwsDeploy::Tasks::GenerateGitVersionTagRb
+  include AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
+  include AwsDeploy::Tasks::GenerateProductionDeploySh
 
   # 
   # 
@@ -41,6 +43,20 @@ class AwsDeploy::Tasks::SetupYml
     # 
     puts "\n5. lib/deploy/git_version_tag.rb"
     generate_local_git_version_tag_rb
+
+
+    # 
+    # lib/production/cron_check_updates.rb
+    # 
+    puts "\n6. lib/production/cron_check_updates.rb"
+    generate_production_cron_check_updates
+
+
+    # 
+    # lib/production/deploy.sh
+    # 
+    puts "\n7. lib/production/deploy.sh"
+    generate_production_deploy_sh
 
 
     # TODO(m)
