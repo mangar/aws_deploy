@@ -59,10 +59,6 @@ class AwsDeploy::Tasks::SetupYml
     generate_production_deploy_sh
 
 
-    # TODO(m)
-    # generate the script dir with deploy.sh and lib dir (aws_send.rb, git_version_tag.rb)
-
-
   end
 
 

@@ -16,6 +16,7 @@ gem 'aws_deploy', :git => 'https://github.com/mangar/aws_deploy.git'
 ...and then:
 ```
 bundle install
+rake aws:setup
 ```
 
 
@@ -39,16 +40,11 @@ Generated content:
 
 - config/aws_deploy.yml
 - script/deploy.rb
+- script/production/cron_check_updates.rb
+- script/production/deploy.sh
+- script/lib/deploy/aws_send.rb
+- script/lib/deploy/git_version_tag.rb
  
-
-
-- script/_deploy.rb
-- script/_deploy_s3.rb
-
-
-//- script/production/deploy.sh
-//- script/production/_deploy_s3.rb
-//- script/production/_deploy_
 
 
 ## Configuration
@@ -81,16 +77,12 @@ staging:
 
 
 
+## TODO
+
+ - Show the version of the GEM (aws_deploy screen or specific URL)
+ - Open field for environments 
 
 
-
-
-## Contribute
-
-- Fork project
-- Add features
-- Run tests
-- Send pull request
 
 ## License
 
