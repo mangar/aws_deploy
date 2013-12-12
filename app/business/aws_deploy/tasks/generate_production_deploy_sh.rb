@@ -14,8 +14,8 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       " \n " + 
       " \n " + 
       "DATA_DIR=/app/deploy \n " + 
-      "ZIP_FILE_NAME=samsung-g11.zip \n " + 
-      "UNPACK_DIR=$DATA_DIR/tmp/unpack_playliststore \n " + 
+      "ZIP_FILE_NAME=zip_file.zip \n " + 
+      "UNPACK_DIR=$DATA_DIR/tmp/npack_{@project_name} \n " + 
       "HOST=`hostname` \n " + 
       "NOW=$(date +\"%y%m%d-%H%M%S\") \n " + 
       " \n " + 
@@ -37,10 +37,10 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "  echo \" \" \n " + 
       "  echo \" onde:\" \n " + 
       "  echo \" \" \n " + 
-      "  echo \" production          => www.playliststore.com\" \n " + 
-      "  echo \" staging             => staging.playliststore.com\"   \n " + 
-      "  echo \" development_remote  => test.playliststore.com\" \n " + 
-      "  echo \" admin               => admin.playliststore.com\"   \n " + 
+      "  echo \" production          => www.{@project_name}.com\" \n " + 
+      "  echo \" staging             => staging.{@project_name}.com\"   \n " + 
+      "  echo \" development_remote  => test.{@project_name}.com\" \n " + 
+      "  echo \" admin               => admin.{@project_name}.com\"   \n " + 
       "  echo \" \" \n " + 
       "  echo \"***********************************************************************************\" \n " + 
       "  exit \n " + 
@@ -48,26 +48,26 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "  if [ \"$1\" == \"admin\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=production \n " + 
-      "    ZIP_FILE_NAME=playliststore-admin.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/admin.playliststore.com.br \n " + 
+      "    ZIP_FILE_NAME={@project_name}-admin.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/admin.{@project_name}.com.br \n " + 
       "  fi   \n " + 
       "  if [ \"$1\" == \"development_remote\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=development_remote \n " + 
-      "    ZIP_FILE_NAME=playliststore-development_remote.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/test.playliststore.com.br \n " + 
+      "    ZIP_FILE_NAME={@project_name}-development_remote.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/test.{@project_name}.com.br \n " + 
       "  fi   \n " + 
       "  if [ \"$1\" == \"staging\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=staging \n " + 
-      "    ZIP_FILE_NAME=playliststore-staging.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/staging.playliststore.com.br \n " + 
+      "    ZIP_FILE_NAME={@project_name}-staging.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/staging.{@project_name}.com.br \n " + 
       "  fi   \n " + 
       "  if [ \"$1\" == \"production\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=production \n " + 
-      "    ZIP_FILE_NAME=playliststore-production.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/www.playliststore.com.br \n " + 
+      "    ZIP_FILE_NAME={@project_name}-production.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/www.{@project_name}.com.br \n " + 
       "  fi   \n " + 
       " \n " + 
       "fi \n " + 
