@@ -23,7 +23,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "aws_secret_access_key = \"#{@aws_secret_access_key}\" \n" + 
       "aws_bucket = \"#{@project_name}/deploy\" \n" + 
       " \n" + 
-      "_temp_dir = \"\#{File.expand_path(\"~\")}/Temp/playliststore\" \n" +
+      "_temp_dir = \"\#{File.expand_path(\"~\")}/Temp/#{@project_name}\" \n" +
       " \n" + 
       "# \n" + 
       "# ------------------------------------------------------------------------------------- \n" + 
@@ -38,7 +38,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       " \n" + 
       " \n" + 
       " \n" + 
-      "puts \"------------------------------------------------------------------------------ \n\n\" \n" + 
+      "puts \"------------------------------------------------------------------------------ \" \n" + 
       " \n" + 
       " \n" + 
       "# puts \"------------------------------------------------------------------------------ \" \n" + 
@@ -82,7 +82,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "exclude_dirs << \"README.rdoc\" \n" + 
       "exclude_dirs << \"public/app\" \n" + 
       " \n" + 
-      # "rsync_command = \"rsync -avz --exclude '#{exclude_dirs.join(\"' --exclude '\")}' ../ #{temp_dir}\" \n" +
+      "rsync_command = \"rsync -avz --exclude '#{exclude_dirs.join(\"' --exclude '\")}' ../ #{temp_dir}\" \n" +
       "system(\"\#{rsync_command}\") \n" + 
       " \n" + 
       " \n" + 
@@ -108,7 +108,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "# puts \"------------------------------------------------------------------------------ \" \n" + 
       " \n" + 
       "system(\"rm -rf \#{temp_dir}/../\#{md5_file}.md5\") \n" + 
-      "system(\"cd \#{temp_dir}; md5 <<< \"\#{Time.now}\" >> ../\#{md5_file}.md5\") \n" + 
+      "system(\"cd \#{temp_dir}; md5 <<< \\\"\#{Time.now}\\\" >> ../\#{md5_file}.md5\") \n" + 
       " \n" + 
       " \n" + 
       " \n" + 

@@ -81,6 +81,8 @@ staging:
 
  - Show the version of the GEM (aws_deploy screen or specific URL)
  - Open field for environments 
+ - Send email to responsibles to approve the deploy on environments
+    - server side development required
 
 
 
