@@ -82,7 +82,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "exclude_dirs << \"README.rdoc\" \n" + 
       "exclude_dirs << \"public/app\" \n" + 
       " \n" + 
-      "rsync_command = \"rsync -avz --exclude '#{exclude_dirs.join(\"' --exclude '\")}' ../ #{temp_dir}\" \n" +
+      "rsync_command = \"rsync -avz --exclude '\#{exclude_dirs.join(\"' --exclude '\")}' ../ \#{temp_dir}\" \n" +
       "system(\"\#{rsync_command}\") \n" + 
       " \n" + 
       " \n" + 
