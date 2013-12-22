@@ -2,10 +2,13 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   layout "aws_deploy"
   require "aws-sdk"
 
+  include AwsDeploy::Index::Version
+
   # 
   # 
   def index
     @exist_config = _exist_config?
+    @version = _get_version_file
   end
 
   # 
