@@ -1,6 +1,6 @@
 
 
-# AwsDeploy
+# AwsDeploy - 0.2.5.0
 
 Push your app from _staging_ to _production_ server using S3 as a bridge
 
@@ -83,7 +83,9 @@ staging:
  - Open field for environments 
  - Send email to responsibles to approve the deploy on environments
     - server side development required
-
+ - Changes to use 'fog' gem
+    - AWS S3 implementation
+    - Rackspace CloudFiles implementation
 
 
 ## License
