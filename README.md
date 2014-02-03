@@ -86,6 +86,7 @@ staging:
  - Changes to use 'fog' gem
     - AWS S3 implementation
     - Rackspace CloudFiles implementation
+ - Run rake on deployment process
 
 
 ## License
