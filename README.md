@@ -1,6 +1,7 @@
 
 
-# AwsDeploy - 0.2.5.0
+# AwsDeploy - 0.2.5.0 
+[![Gem Version](https://badge.fury.io/rb/aws_deploy.png)](http://badge.fury.io/rb/aws_deploy)
 
 Push your app from _staging_ to _production_ server using S3 as a bridge
 
