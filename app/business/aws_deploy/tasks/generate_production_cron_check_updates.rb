@@ -16,9 +16,9 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         " \n" + 
         " AWS.config(:access_key_id => \"#{@aws_access_key_id}\", :secret_access_key => \"#{@aws_secret_access_key}\")     \n" + 
         " \n" + 
-        "base_dir = \"/app/deploy/\" \n" + 
-        "project_name = \"#{@file_pattern}\" \n" + 
-        "bucket = \"#{@file_pattern}/deploy\" \n" + 
+        "data_dir = \"#{@deploy_data_dir}\" \n" + 
+        "file_pattern = \"#{@file_pattern}\" \n" + 
+        "bucket = \"#{@aws_deploy_bucket}\" \n" + 
         " \n" + 
         "#  \n" + 
         "# ------------------------------------------------------------------------------------- \n" + 
@@ -35,8 +35,8 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         "    puts \"ERR - Invalid Environment: (\#{ARGV[0]})\" \n" + 
         "  else  \n" + 
         " \n" + 
-        "    s3_filename = \"\#{project_name}-\#{ARGV[0]}.zip\" \n" + 
-        "    s3_filename_md5 = \"\#{project_name}-\#{ARGV[0]}.md5\" \n" + 
+        "    s3_filename = \"\#{file_pattern}-\#{ARGV[0]}.zip\" \n" + 
+        "    s3_filename_md5 = \"\#{file_pattern}-\#{ARGV[0]}.md5\" \n" + 
         " \n" + 
         " \n" + 
         "    # # puts \"------------------------------------------------------------------------------ \" \n" + 
@@ -49,9 +49,9 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         "    obj = bucket.objects[s3_filename_md5] \n" + 
         " \n" + 
         "    if obj.exists? \n" + 
-        "      File.delete(\"\#{base_dir}\#{s3_filename_md5}\") if File.exist?(\"\#{base_dir}\#{s3_filename_md5}\") \n" + 
+        "      File.delete(\"\#{data_dir}\#{s3_filename_md5}\") if File.exist?(\"\#{data_dir}\#{s3_filename_md5}\") \n" + 
         " \n" + 
-        "      File.open(\"\#{base_dir}\#{s3_filename_md5}\", 'wb') do |file| \n" + 
+        "      File.open(\"\#{data_dir}\#{s3_filename_md5}\", 'wb') do |file| \n" + 
         "        obj.read do |chunk| \n" + 
         "          file.write(chunk) \n" + 
         "        end \n" + 
@@ -62,10 +62,10 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         "      puts \"2. Checking MD5 ... \" \n" + 
         " \n" + 
         "      # md5 checking... \n" + 
-        "      md5_file_data = File.read(\"\#{base_dir}\#{s3_filename_md5}\") \n" + 
+        "      md5_file_data = File.read(\"\#{data_dir}\#{s3_filename_md5}\") \n" + 
         " \n" + 
-        "      if File.exist?(\"\#{base_dir}\#{s3_filename_md5}.local\") \n" + 
-        "        md5_local = File.read(\"\#{base_dir}\#{s3_filename_md5}.local\") \n" + 
+        "      if File.exist?(\"\#{data_dir}\#{s3_filename_md5}.local\") \n" + 
+        "        md5_local = File.read(\"\#{data_dir}\#{s3_filename_md5}.local\") \n" + 
         "      else \n" + 
         "        md5_local = \"new__\#{md5_file_data}\" \n" + 
         "      end \n" + 
@@ -83,7 +83,7 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         " \n" + 
         "        if obj.exists? \n" + 
         " \n" + 
-        "          File.open(\"\#{base_dir}\#{s3_filename}\", 'w+b') do |file| \n" + 
+        "          File.open(\"\#{data_dir}\#{s3_filename}\", 'w+b') do |file| \n" + 
         "            obj.read do |chunk| \n" + 
         "              file.write(chunk) \n" + 
         "            end \n" + 
@@ -93,21 +93,21 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         "          puts \"4. Writing controls ... .log and .md5.local files \" \n" + 
         " \n" + 
         " \n" + 
-        "          system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{base_dir}\#{project_name}-\#{ARGV[0]}_YES.log\") \n" + 
+        "          system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{data_dir}\#{file_pattern}-\#{ARGV[0]}_YES.log\") \n" + 
         "          # updating local MD5   \n" + 
-        "          File.open(\"\#{base_dir}\#{s3_filename_md5}.local\", 'w+') { |file| file.write(\"\#{md5_file_data}\") } \n " +
+        "          File.open(\"\#{data_dir}\#{s3_filename_md5}.local\", 'w+') { |file| file.write(\"\#{md5_file_data}\") } \n " +
         " \n" +
         "          puts \"5. Deploying....\" \n" + 
-        "          system(\"\#{base_dir}deploy.sh \#{ARGV[0]}\") \n " + 
+        "          system(\"\#{data_dir}deploy.sh \#{ARGV[0]}\") \n " + 
         " \n" +
         "        else \n" +
-        "          system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{base_dir}\#{project_name}-\#{ARGV[0]}_NO.log\")  \n" +
+        "          system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{data_dir}\#{file_pattern}-\#{ARGV[0]}_NO.log\")  \n" +
         "        end \n" +
         "      else \n" +
-        "        system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{base_dir}\#{project_name}-\#{ARGV[0]}_NO.log\")  \n" +
+        "        system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{data_dir}\#{file_pattern}-\#{ARGV[0]}_NO.log\")  \n" +
         "      end  \n" +
         "    else  \n" +
-        "      system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{base_dir}\#{project_name}-\#{ARGV[0]}_NO.log\")  \n" +
+        "      system(\"echo \\\"\#{Time.now.strftime(\"%y%m%d_%H%M%S\")}\\\" >> \#{data_dir}\#{file_pattern}-\#{ARGV[0]}_NO.log\")  \n" +
         "    end \n" + 
         " \n" + 
         "  end \n" + 

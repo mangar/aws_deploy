@@ -1,20 +1,22 @@
 class AwsDeploy::Tasks::SetupYml
+  include AwsDeploy::Tasks::CollectInputs
   include AwsDeploy::Tasks::GenerateAwsDeploy
   include AwsDeploy::Tasks::GenerateLocalDeployRb
   include AwsDeploy::Tasks::GenerateAwsSendRb
   include AwsDeploy::Tasks::GenerateGitVersionTagRb
   include AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
   include AwsDeploy::Tasks::GenerateProductionDeploySh
-
+ 
   # 
   # 
   def run
 
+    collect_inputs
+
     # 
     # aws_deploy.yml
     # 
-    puts "\n1. aws_deploy.rb"
-    collect_inputs__aws_deploy
+    puts "\n1. aws_deploy.yml"
     generate_aws_deploy
 
 
@@ -27,7 +29,6 @@ class AwsDeploy::Tasks::SetupYml
     # deploy.rb
     # 
     puts "\n3. deploy.rb"    
-    collect_inputs__local_deploy_rb
     generate_local_deploy_rb
 
 

@@ -8,18 +8,18 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "#!/bin/bash \n " + 
       "# \n " + 
       "# Usage: \n " + 
-      "# ./deploy.sh [app|test2] \n " + 
+      "# ./deploy.sh [RAILS_ENV] \n " + 
       "# \n " + 
       "# \n " + 
       " \n " + 
       " \n " + 
-      "DATA_DIR=/app/deploy \n " + 
+      "DATA_DIR=#{@deploy_data_dir} \n " + 
       "ZIP_FILE_NAME=zip_file.zip \n " + 
-      "UNPACK_DIR=$DATA_DIR/tmp/npack_{@project_name} \n " + 
+      "UNPACK_DIR=$DATA_DIR/tmp/npack_#{@project_name} \n " + 
       "HOST=`hostname` \n " + 
       "NOW=$(date +\"%y%m%d-%H%M%S\") \n " + 
       " \n " + 
-      "BASE_DEPLOY_DIR=/app/www \n " + 
+      "BASE_DEPLOY_DIR=#{@deploy_base_dir} \n " + 
       "clear screen \n " + 
       " \n " + 
       "TODAY=$(date) \n " + 
@@ -37,10 +37,10 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "  echo \" \" \n " + 
       "  echo \" onde:\" \n " + 
       "  echo \" \" \n " + 
-      "  echo \" production          => www.{@project_name}.com\" \n " + 
-      "  echo \" staging             => staging.{@project_name}.com\"   \n " + 
-      "  echo \" development_remote  => test.{@project_name}.com\" \n " + 
-      "  echo \" admin               => admin.{@project_name}.com\"   \n " + 
+      "  echo \" production          => www.#{@project_name}.com\" \n " + 
+      "  echo \" staging             => staging.#{@project_name}.com\"   \n " + 
+      "  echo \" development_remote  => test.#{@project_name}.com\" \n " + 
+      "  echo \" admin               => admin.#{@project_name}.com\"   \n " + 
       "  echo \" \" \n " + 
       "  echo \"***********************************************************************************\" \n " + 
       "  exit \n " + 
@@ -48,26 +48,26 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "  if [ \"$1\" == \"admin\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=production \n " + 
-      "    ZIP_FILE_NAME={@project_name}-admin.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/admin.{@project_name}.com.br \n " + 
+      "    ZIP_FILE_NAME=#{@file_pattern}-admin.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/admin.#{@project_name}.com.br \n " + 
       "  fi   \n " + 
       "  if [ \"$1\" == \"development_remote\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=development_remote \n " + 
-      "    ZIP_FILE_NAME={@project_name}-development_remote.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/test.{@project_name}.com.br \n " + 
+      "    ZIP_FILE_NAME=#{@file_pattern}-development_remote.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/test.#{@project_name}.com.br \n " + 
       "  fi   \n " + 
       "  if [ \"$1\" == \"staging\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=staging \n " + 
-      "    ZIP_FILE_NAME={@project_name}-staging.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/staging.{@project_name}.com.br \n " + 
+      "    ZIP_FILE_NAME=#{@file_pattern}-staging.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/staging.#{@project_name}.com.br \n " + 
       "  fi   \n " + 
       "  if [ \"$1\" == \"production\" ]  \n " + 
       "  then \n " + 
       "    export RAILS_ENV=production \n " + 
-      "    ZIP_FILE_NAME={@project_name}-production.zip \n " + 
-      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/www.{@project_name}.com.br \n " + 
+      "    ZIP_FILE_NAME=#{@file_pattern}-production.zip \n " + 
+      "    BASE_DEPLOY_DIR=$BASE_DEPLOY_DIR/www.#{@project_name}.com.br \n " + 
       "  fi   \n " + 
       " \n " + 
       "fi \n " + 
