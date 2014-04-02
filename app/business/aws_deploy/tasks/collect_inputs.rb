@@ -24,12 +24,12 @@ module AwsDeploy::Tasks::CollectInputs
 
     print "Name of your base dir? [/var/app/www] :"
     @deploy_base_dir = STDIN.gets 
-    @deploy_base_dir = (@deploy_base_dir.blank? ? "deploy_base_dir" : @deploy_base_dir)
+    @deploy_base_dir = (@deploy_base_dir.blank? ? "/var/app/www" : @deploy_base_dir)
     puts "#{@deploy_base_dir.gsub!("\n","")} \n"
 
     print "Name of your data dir? [/var/app/aws_deploy] :"
     @deploy_data_dir = STDIN.gets 
-    @deploy_data_dir = (@deploy_data_dir.blank? ? "deploy_data_dir" : @deploy_data_dir)
+    @deploy_data_dir = (@deploy_data_dir.blank? ? "/var/app/aws_deploy" : @deploy_data_dir)
     puts "#{@deploy_data_dir.gsub!("\n","")} \n"
 
     print "Name of your project? [directory/deploy] :"
