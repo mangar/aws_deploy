@@ -13,7 +13,7 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "# \n " + 
       " \n " + 
       " \n " + 
-      "DATA_DIR=File.expand_path File.dirname(__FILE__) \n " + 
+      "DATA_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )\" \n " + 
       "ZIP_FILE_NAME=zip_file.zip \n " + 
       "UNPACK_DIR=$DATA_DIR/tmp/npack_#{@project_name} \n " + 
       "HOST=`hostname` \n " + 
@@ -122,7 +122,7 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "# echo \"-----------------------------------------------------------------------------------\" \n " + 
       " \n " + 
       "# nginx_restart \n " + 
-      "sudo service nginx restart \n " + 
+      "service nginx restart \n " + 
       " \n " + 
       " \n " + 
       " \n " + 

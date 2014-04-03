@@ -74,6 +74,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "exclude_dirs << \".gitignore\" \n" + 
       "exclude_dirs << \".autotest\" \n" + 
       "exclude_dirs << \"tmp\" \n" + 
+      "exclude_dirs << \"doc\" \n" + 
       "exclude_dirs << \".svn\" \n" + 
       "exclude_dirs << \"wip\" \n" + 
       "exclude_dirs << \"log/*\" \n" + 

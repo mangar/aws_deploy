@@ -16,7 +16,7 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         " \n" + 
         " AWS.config(:access_key_id => \"#{@aws_access_key_id}\", :secret_access_key => \"#{@aws_secret_access_key}\")     \n" + 
         " \n" + 
-        "data_dir = \"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" && pwd )\" \n" + 
+        "data_dir = File.expand_path File.dirname(__FILE__) \n" + 
         "file_pattern = \"#{@file_pattern}\" \n" + 
         "bucket = \"#{@aws_deploy_bucket}\" \n" + 
         " \n" + 
