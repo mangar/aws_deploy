@@ -22,20 +22,16 @@ module AwsDeploy::Tasks::CollectInputs
     @file_pattern = STDIN.gets || "my_file_before_zip_ext"
     puts "#{@file_pattern.gsub!("\n","")} \n"
 
+    print "What is of your project NAME? [ex: admin.XXX.com.br|www.XXX.com.br|test.XXX.com.br] :"
+    @project_name = STDIN.gets 
+    @project_name = (@project_name.blank? ? "project_name" : @project_name)
+    puts "#{@project_name.gsub!("\n","")} \n"
+
     print "Name of your base dir? [default: /var/app/www] :"
     @deploy_base_dir = STDIN.gets 
     @deploy_base_dir = (@deploy_base_dir.blank? ? "/var/app/www" : @deploy_base_dir)
     puts "#{@deploy_base_dir.gsub!("\n","")} \n"
-
-    print "Name of your data dir? [default: /var/app/aws_deploy] :"
-    @deploy_data_dir = STDIN.gets 
-    @deploy_data_dir = (@deploy_data_dir.blank? ? "/var/app/aws_deploy" : @deploy_data_dir)
-    puts "#{@deploy_data_dir.gsub!("\n","")} \n"
-
-    print "Name of your project? [ex: admin.XXX.com.br or www.XXX.com.br or test.XXX.com.br] :"
-    @project_name = STDIN.gets 
-    @project_name = (@project_name.blank? ? "project_name" : @project_name)
-    puts "#{@project_name.gsub!("\n","")} \n"
+    
 
   end
 

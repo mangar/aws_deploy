@@ -13,7 +13,7 @@ module AwsDeploy::Tasks::GenerateProductionDeploySh
       "# \n " + 
       " \n " + 
       " \n " + 
-      "DATA_DIR=#{@deploy_data_dir} \n " + 
+      "DATA_DIR=File.expand_path File.dirname(__FILE__) \n " + 
       "ZIP_FILE_NAME=zip_file.zip \n " + 
       "UNPACK_DIR=$DATA_DIR/tmp/npack_#{@project_name} \n " + 
       "HOST=`hostname` \n " + 
