@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.0.0"
   s.add_dependency "aws-sdk", "~> 1.21"
+  s.add_dependency "my_pushbullet", "~> 0.0.2"
+  
 
   # s.add_development_dependency "sqlite3"
 end

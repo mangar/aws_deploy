@@ -1,6 +1,6 @@
 
 
-# AwsDeploy - 0.2.5.1 
+# AwsDeploy - 0.2.6.0
 [![Gem Version](https://badge.fury.io/rb/aws_deploy.png)](http://badge.fury.io/rb/aws_deploy)
 
 Push your app from _staging_ to _production_ server using S3 as a bridge
@@ -11,7 +11,7 @@ Push your app from _staging_ to _production_ server using S3 as a bridge
 Install the gem using the bundle.... 
 
 ```
-gem 'aws_deploy', :git => 'https://github.com/mangar/aws_deploy.git'
+gem 'aws_deploy'
 ```
 
 ...and then:
@@ -66,15 +66,41 @@ development:
   aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   file_pattern: FILE_NAME
+  pushbullet:
+    api_key: PUSHBULLET_APIKEY_1 PUSHBULLET_APIKEY_2 PUSHBULLET_APIKEY_N
 
 staging: 
   aws_bucket: "YOUR_BUCKET_ON_S3"
   aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   file_pattern: FILE_NAME
+  pushbullet:
+    api_key: PUSHBULLET_APIKEY_1 PUSHBULLET_APIKEY_2 PUSHBULLET_APIKEY_N  
 
 ```
 
+
+### Pushbullet integration
+
+Every publish on all environment the API keys informed on aws_deploy.yml file will be notified.
+Just add the API Key generated on your [account setting](https://www.pushbullet.com/account).
+
+You can inform more than one, just add a space between each key.
+
+Format:
+
+    api_key|DEVICE NAME|Identification Name
+
+Where:
+
+1. ```api_key``` is your API Key generated on Pushbullet website (menu [Account Settings](https://www.pushbullet.com/account))
+1. ```DEVICE NAME``` the device name listed in your [Device and Friends - logged in area](https://www.pushbullet.com/)
+1. ```Identification Name``` Just an identification for that device, for instance: the owners name...
+
+
+Sample:
+
+    v1Y50OAUUEcDZKiVUtbiivJJ18HPatwazWujzCvGXFPuS|Chrome|My Computer at Company
 
 
 
@@ -84,9 +110,6 @@ staging:
  - Open field for environments 
  - Send email to responsibles to approve the deploy on environments
     - server side development required
- - Changes to use 'fog' gem
-    - AWS S3 implementation
-    - Rackspace CloudFiles implementation
  - Run rake on deployment process
 
 

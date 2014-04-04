@@ -11,3 +11,5 @@ test/dummy/.sass-cache
 /aws_deploy-0.2.5.0.gem
 
 .DS_Store
+
+/config/routes.rb.orig
