@@ -1,0 +1,42 @@
+<h1>Notifications</h1>
+
+<%if flash[:message] %>
+<hr>
+<b>Message:</b> <br>
+<h2><%= flash[:message]%></h2>
+<hr>
+<% end %>
+
+
+<%if !flash[:errors].blank? %>
+<b>Errors:</b> <br>
+<h2><%= flash[:errors]%></h2>
+<hr>
+<% end %>
+
+
+<h3>Pushbullet - API Keys</h3>
+
+<%= form_tag(aws_deploy_notifications_send_path) do %>
+<ul>
+  <%
+  api_keys = $aws_deploy["pushbullet"]["api_key"]
+  keys = api_keys.split(" ")
+  %>
+  <% keys.each_with_index do |k,i|  %>
+  <li>
+    <%= label_tag "item_#{i}", k do%>
+      <%= check_box_tag "item_#{i}", k, :checked %>
+      <%= k%>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+<hr>
+<button class="sexybutton sexysimple"><span class="ok">Send Message</span></button>
+<%end-%>
+
+
+
+
+
