@@ -13,22 +13,12 @@ class AwsDeploy::Notification
       keys = api_keys.split(" ")
 
       keys.each_with_index do |k,i| 
+        puts "-" * 100
 
+        puts "#{i} - #{k}"
+
+        puts "-" * 100  
       end
-  <li>
-    <%= label_tag "item_#{i}", k do%>
-      <%= check_box_tag "item_#{i}", k, :checked %>
-      <%= k%>
-    <% end %>
-  </li>
-  <% end %>
-
-
-
-
-
-
-
 
       begin
         _sendn(vals[0], vals[1])
@@ -69,7 +59,5 @@ class AwsDeploy::Notification
           :iden => "#{iden}"
 
   end
-
-
 
 end
