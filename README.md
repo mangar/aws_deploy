@@ -67,7 +67,7 @@ development:
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   file_pattern: FILE_NAME
   pushbullet:
-    api_key: PUSHBULLET_APIKEY_1 PUSHBULLET_APIKEY_2 PUSHBULLET_APIKEY_N
+    api_key: PUSHBULLET_APIKEY|DeviceName|Identified PUSHBULLET_APIKEY|DeviceName|Identified
 
 staging: 
   aws_bucket: "YOUR_BUCKET_ON_S3"
@@ -75,7 +75,7 @@ staging:
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   file_pattern: FILE_NAME
   pushbullet:
-    api_key: PUSHBULLET_APIKEY_1 PUSHBULLET_APIKEY_2 PUSHBULLET_APIKEY_N  
+    api_key: PUSHBULLET_APIKEY|DeviceName|Identified PUSHBULLET_APIKEY|DeviceName|Identified
 
 ```
 
