@@ -16,12 +16,12 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "# CONFIGURABLE \n" + 
       "# ------------------------------------------------------------------------------------- \n" + 
       " \n" + 
-      "zip_file = \"#{@project_name}\" \n" + 
+      "zip_file = \"#{@file_pattern}\" \n" + 
       "md5_file = \"\#{zip_file}\" \n" + 
       " \n" + 
       "aws_access_key_id = \"#{@aws_access_key_id}\" \n" + 
       "aws_secret_access_key = \"#{@aws_secret_access_key}\" \n" + 
-      "aws_bucket = \"#{@project_name}/deploy\" \n" + 
+      "aws_bucket = \"#{@aws_deploy_bucket}\" \n" + 
       " \n" + 
       "_temp_dir = \"\#{File.expand_path(\"~\")}/Temp/#{@project_name}\" \n" +
       " \n" + 
@@ -74,6 +74,7 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
       "exclude_dirs << \".gitignore\" \n" + 
       "exclude_dirs << \".autotest\" \n" + 
       "exclude_dirs << \"tmp\" \n" + 
+      "exclude_dirs << \"doc\" \n" + 
       "exclude_dirs << \".svn\" \n" + 
       "exclude_dirs << \"wip\" \n" + 
       "exclude_dirs << \"log/*\" \n" + 
@@ -134,14 +135,6 @@ module AwsDeploy::Tasks::GenerateLocalDeployRb
   end
 
 
-
-  def collect_inputs__local_deploy_rb
-    print "Name of your project? [directory/deploy] :"
-    @project_name = STDIN.gets 
-    @project_name = (@project_name.blank? ? "project_name" : @project_name)
-    puts "#{@project_name.gsub!("\n","")} \n"
-
-  end
 
 
 
