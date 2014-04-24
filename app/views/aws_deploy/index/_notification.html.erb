@@ -1,0 +1,19 @@
+<hr>
+<b>Notifications:</b>
+
+<%if $aws_deploy["pushbullet"] && $aws_deploy["pushbullet"]["api_key"]%>
+  <a href="<%= aws_deploy_notifications_path%>">Send a test</a>
+
+<ul>
+  <%
+  api_keys = $aws_deploy["pushbullet"]["api_key"]
+  keys = api_keys.split(" ")
+  %>
+  <% keys.each_with_index do |k,i|  %>
+  <li><%= k%></li>
+  <% end %>
+</ul>
+
+<% else %>
+  <i>You don't have Pushbullet configured</i>
+<% end %>
