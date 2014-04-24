@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 	      match "/send_to_production"  => "index#send_to_production", :as => :send_to_production_awsdeploy, via: [:post]
 	      match "/version"  => "index#version", :as => :version, via: [:get]
 
-<<<<<<< HEAD
         get "/notifications"  => "notifications#index", :as => :notifications
         post "/notifications/send"  => "notifications#sendn", :as => :notifications_send
 	    end
@@ -22,12 +21,6 @@ Rails.application.routes.draw do
           post "/notifications/send"  => "notifications#sendn", :as => :notifications_send
         end
       end
-=======
-      match "/version"  => "index#version", :as => :version, via: [:get]
-
-      get "/notifications"  => "notifications#index", :as => :notifications
-      post "/notifications/send"  => "notifications#sendn", :as => :notifications_send
->>>>>>> d713a991a68fb5b9c0f103fd466c3665a6dbaf2a
     end
   end
 end
