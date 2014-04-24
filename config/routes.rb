@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
           get "/notifications"  => "notifications#index", :as => :notifications
           post "/notifications/send"  => "notifications#sendn", :as => :notifications_send
+        end
+      end
     end
   end
 end
