@@ -7,7 +7,7 @@ gemspec
 
 gem "rails", "~> 4.0.0"
 gem "aws-sdk", "~> 1.21"
-gem "my_pushbullet", "~> 0.0.2"
+gem "my_pushbullet", "~> 0.0.3"
 
 gem 'sqlite3'
 
