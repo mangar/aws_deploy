@@ -8,6 +8,9 @@ namespace :aws do
 
   desc "Create the initial aws_deploy.yml file"
 
+  # 
+  # 
+  # 
   task :setup => :environment do
     system("clear screen")
     puts "-" * 100
@@ -21,27 +24,13 @@ namespace :aws do
 
 
 
+  # 
+  # 
+  # 
+  task :notifty_deploy => :environment do 
+    AwsDeploy::Notification.send("all", "#{$aws_deploy["project_name"]} - [development_remote]", "[development_remote]\nA new deployment was scheduled.")
+  end
 
-  # desc "Package and deploy the project on staging environment"
-
-  # task :staging => :environment do
-
-  #   system("clear screen")
-
-  #   puts "-" * 100
-  #   puts "Starting deployment on Staging environment"
-
-
-  #   puts "#{Deploy::Deploy.new.deploy_on_stage}"
-    
-  # end
-
-
-
-  # desc "TODO"
-  # task :t2 => :environment do
-  #   puts "t2.aws_deploy"
-  # end
 
 end
 

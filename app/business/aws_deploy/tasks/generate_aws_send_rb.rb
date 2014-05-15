@@ -31,6 +31,8 @@ module AwsDeploy::Tasks::GenerateAwsSendRb
       "    obj.delete \n" + 
       "    obj.write(Pathname.new(\"\#{file_name}\")) \n" + 
       " \n" + 
+      "    system(\"rake aws:notifty_deploy\") if (file_name.end_with?(\".md5\")) \n" + 
+      " \n" + 
       "  end \n" + 
       " \n" + 
       "end \n"
