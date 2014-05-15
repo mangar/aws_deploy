@@ -62,6 +62,7 @@ file_pattern-prod.zip and file_pattern-prod.md5  for production environment
 
 ```
 development:
+  project_name: "THE NAME OF YOUR PROJECT HERE"
   aws_bucket: "YOUR_BUCKET_ON_S3"
   aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
@@ -70,6 +71,7 @@ development:
     api_key: PUSHBULLET_APIKEY|DeviceName|Identified PUSHBULLET_APIKEY|DeviceName|Identified
 
 staging: 
+  project_name: "THE NAME OF YOUR PROJECT HERE"
   aws_bucket: "YOUR_BUCKET_ON_S3"
   aws_access_key_id: "YOUR_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"
   aws_secret_access_key: "YOUR_SECRET_ACCESS_KEY or ENV['YOUR_KEY_EXPORTED']"

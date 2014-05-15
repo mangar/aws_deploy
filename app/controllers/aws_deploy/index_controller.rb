@@ -55,6 +55,9 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
 
           message += " (#{environment})"
 
+          AwsDeploy::Notification.send("all", "#{$aws_deploy["project_name"]}", 
+                                           "[#{environment}] A new deployment was scheduled.")
+
       else
         message = "DevelopmentRemote file not found. #{_md5_file("development_remote")}"
       end
