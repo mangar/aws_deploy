@@ -4,30 +4,29 @@ class AwsDeploy::Notification
   # 
   # 
   # 
-  def self.send to="all"
+  def self.send to="all", title="subject", message="message"
     @errors = []
-
+    vals = []
     if to == "all"
 
       api_keys = $aws_deploy["pushbullet"]["api_key"]
       keys = api_keys.split(" ")
 
-      keys.each_with_index do |k,i| 
-        puts "-" * 100
-
-        puts "#{i} - #{k}"
-
-        puts "-" * 100  
-      end
 
       begin
-        _sendn(vals[0], vals[1])
+
+        keys.each_with_index do |k,i| 
+          puts "-" * 100
+          puts "#{i} - #{k}"
+          vals = k.split("|")
+          puts "-" * 100  
+
+        AwsDeploy::Notification.sendn(vals[0], vals[1], title, message)
+
+        end
       rescue Exception => e
         @errors << "Problem sending to: #{vals[0]}|#{vals[1]}|#{vals[2]} ... #{e}"
       end
-
-    else
-
 
     end
 
@@ -39,7 +38,7 @@ class AwsDeploy::Notification
   # 
   # 
   # 
-  def _sendn token, device_name
+  def self.sendn token, device_name, title="", message=""
     push = MyPush.new :token => token
 
     # find the device...
@@ -54,8 +53,8 @@ class AwsDeploy::Notification
 
     # send a message..
     push.push :type => MyPush::PUSH_TYPE_NOTE, 
-          :title => "[TEST][aws_deploy] #{Rails.application.class.parent_name} #{Rails.env}", 
-          :body => "This is a test message sent from aws_deploy", 
+          :title => "#{title}", 
+          :body => "#{message}", 
           :iden => "#{iden}"
 
   end
