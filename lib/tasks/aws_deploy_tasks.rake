@@ -23,14 +23,11 @@ namespace :aws do
   end
 
 
-
-  # 
   # 
   # 
   task :notifty_deploy => :environment do 
     AwsDeploy::Notification.send("all", "#{$aws_deploy["project_name"]} - [development_remote]", "[development_remote]\nA new deployment was scheduled.")
   end
-
 
 end
 

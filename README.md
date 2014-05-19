@@ -6,6 +6,12 @@
 Push your app from _staging_ to _production_ server using S3 as a bridge
 
 
+## Scheme
+
+![Scheme](http://codeinfected.com/images/extra/aws_deploy_scheme_github.png)
+
+
+
 ## Install
 
 Install the gem using the bundle.... 
