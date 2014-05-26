@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    aws_deploy (0.2.6.1)
+    aws_deploy (0.3.0.0)
       aws-sdk (~> 1.21)
       my_pushbullet (~> 0.0.3)
       rails (~> 4.0.0)

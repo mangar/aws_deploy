@@ -1,5 +1,15 @@
 module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
 
+  #
+  #
+  #
+  def envs_code
+    codes = ""
+    $aws_deploy["envs"].split(" ").each do |e| codes += "#{e.split("|")[0]} "   end
+    codes
+  end
+
+  
   # 
   # 
   def generate_production_cron_check_updates
@@ -31,7 +41,8 @@ module AwsDeploy::Tasks::GenerateProductionCronCheckUpdates
         "  puts \"ERR - Process stoped. Environment not defined.\" \n" + 
         " \n" + 
         "else  \n" + 
-        "  if !%w(admin development_remote production staging).include?(\"\#{ARGV[0]}\") \n" + 
+        # "  if !%w(admin development_remote production staging).include?(\"\#{ARGV[0]}\") \n" + 
+        "  if !%w(#{envs_code()}).include?(\"\#{ARGV[0]}\") \n" + 
         "    puts \"ERR - Invalid Environment: (\#{ARGV[0]})\" \n" + 
         "  else  \n" + 
         " \n" + 

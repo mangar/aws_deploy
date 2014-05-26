@@ -3,12 +3,14 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   require "aws-sdk"
 
   include AwsDeploy::Index::Version
+  include AwsDeploy::Index::Envs
 
   # 
   # 
   def index
     @exist_config = _exist_config?
-    @version = _get_version_file
+    @version = _get_version_file()
+    @envs = _get_envs()
   end
 
   # 
@@ -37,7 +39,8 @@ class AwsDeploy::IndexController < AwsDeploy::AwsDeployApplicationController
   def _move_to environment
     
     message = "File sent to S3"
-    if %w(admin staging production).include?(environment)
+    # if %w(admin staging production).include?(environment)
+    if _get_envs_code().include?(environment)
 
       AWS.config(:access_key_id => "#{_aws_access_key_id}", :secret_access_key => "#{_aws_secret_access_key}")
       s3 = AWS::S3.new
