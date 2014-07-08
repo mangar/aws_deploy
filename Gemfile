@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem "rails", "~> 4.0.0"
+gem "rails", "~> 4"
 gem "aws-sdk", "~> 1.21"
 gem "my_pushbullet", "~> 0.0.3"
 
